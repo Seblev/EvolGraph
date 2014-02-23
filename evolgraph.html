@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>EvolGraph</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="jqplot/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="jqplot/plugins/jqplot.dateAxisRenderer.min.js"></script>
+<script type="text/javascript" src="jqplot/plugins/jqplot.logAxisRenderer.min.js"></script>
+<script type="text/javascript" src="jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
+<script type="text/javascript" src="jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script type="text/javascript" src="jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+<script type="text/javascript" src="jqplot/plugins/jqplot.highlighter.min.js"></script>
+<link rel="stylesheet" type="text/css" href="jqplot/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/smoothness/jquery-ui.css" />
+    </head>
+    <body>
+        <script type="text/javascript">
+
+    $(document).ready(function () {
+    $.jqplot._noToImageButton = true;
+    
+    var annee2011 = [['Janvier',1000.00], ['Février',1050.00], ['Mars',1000.00],
+    ['Avril',1000.00], ['Mai',1080.10], ['Juin',1000,97],
+    ['Juillet',1000.16], ['Août',1000.81], ['Septembre',1120.00],
+    ['Octobre',1000.00], ['Novembre',1000.00], ['Décembre', 1200.00]];
+
+    var annee2012 = [['Janvier',1066.00], ['Février',1088.00], ['Mars',1050.00],
+    ['Avril',1050.00], ['Mai',1020.10], ['Juin',1060,97],
+    ['Juillet',1050.16], ['Août',1050.81], ['Septembre',1080.00],
+    ['Octobre',1050.00], ['Novembre',1050.00], ['Décembre', 1250.00]];
+
+    var annee2013 = [['Janvier',1100.00], ['Février',1170.00], ['Mars',1100.00],
+    ['Avril',1100.00], ['Mai',1125.10], ['Juin',1075,97],
+    ['Juillet',1100.00], ['Août',1060.81], ['Septembre',1140.00],
+    ['Octobre',1100.00], ['Novembre',1100.00], ['Décembre', 1320.00]];
+
+    var plot1 = $.jqplot("chart1", [annee2011, annee2012, annee2013], {
+        seriesColors: ["rgba(78, 135, 194, 0.7)", "rgb(211, 235, 59)", "rgb(251, 135, 59)"],
+        title: 'Évolution salariale',
+        highlighter: {
+            show: true,
+            sizeAdjust: 1,
+            tooltipOffset: 9
+        },
+        grid: {
+            background: 'rgba(57,57,57,0.0)',
+            drawBorder: false,
+            shadow: false,
+            gridLineColor: '#666666',
+            gridLineWidth: 2
+        },
+        legend: {
+            show: true,
+            placement: 'outside'
+        },
+        seriesDefaults: {
+            rendererOptions: {
+                smooth: true,
+                animation: {
+                    show: true
+                }
+            },
+            showMarker: false
+        },
+        series: [
+            {
+                label: '2010'
+            },
+            {
+                label: '2011'
+            },
+            {
+                label: '2014'
+            }
+        ],
+        axesDefaults: {
+            rendererOptions: {
+                baselineWidth: 1.5,
+                baselineColor: '#444444',
+                drawBaseline: false
+            }
+        },
+        axes: {
+            xaxis: {
+                renderer: $.jqplot.CategoryAxisRenderer,
+                tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                drawMajorGridlines: false
+            },
+            yaxis: {
+                tickOptions: {
+                    formatString: "€%'d",
+                    showMark: false
+                }
+            }
+        }
+    });
+ 
+      $('.jqplot-highlighter-tooltip').addClass('ui-corner-all')
+});
+</script>
+<div id="chart1" style="height: 500px;width: 800px;border: black solid 1px;"></div>
+    </body>
+</html>
